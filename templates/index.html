@@ -1,0 +1,10 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<div class="container">
+    <h1 class="display-4">
+        Discover New Art
+    </h1>
+    <a class="btn btn-primary" href="{{ url_for('artist_search') }}" role="button">Get Artist JSON</a>
+</div>
+{% endblock %}

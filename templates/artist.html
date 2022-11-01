@@ -1,0 +1,31 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<div class="container">
+    <h1 class="display-4">
+        {{ data['name'] }}
+    </h1>
+    {% if data['birthday'] and data['hometown'] %}
+    <p>Born in {{ data['birthday'] }} in {{ data['hometown'] }}</p>
+    {% else %}
+    <p>Date/place of birth unknown.</p>
+    {% endif %}
+    {% if data['biography'] %}
+    <p>{{ data['biography'] }}</p>
+    {% else %}
+    <p>Biography not available.</p>
+    {% endif %}
+    <p>Notable artworks:</p>
+    <ul>
+        {% for artwork in artworks %}
+            <li><a href="{{ artwork['_links']['thumbnail']['href'] }}">{{ artwork['title'] }}</a></li>
+        {% endfor %}
+    </ul>
+    <p>Similar artists:</p>
+    <ul>
+        {% for artist in artists %}
+            <li><a href="{{ url_for('artist', name=artist['slug']) }}">{{ artist['name'] }}</a></li>
+        {% endfor %}
+    </ul>
+</div>
+{% endblock %}
